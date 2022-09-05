@@ -101,8 +101,11 @@
   How do you record no Byzantine faults?  What is the solution so that no single, corruptible, centralized, and potentially wrongdoing authority must be entrusted with control?<br>
   <br>
   <br>
-  Each general gets a private key and 1 vote
-  they cast a vote with their priv key
+  The existing solution to Byzantine generals relies on the ability of all generals to provide unique and unforgeable signatures which must be forgeable and known, 
+  without comprimising the unforgable nature of each general's unique signature. The general's signature needs to be undiscovered by participants, yet they need to
+  percieve it as valuable for reaching agreement. This can be made possible by each general signing a seperate signature, which they never reveal to anybody else, 
+  which is required for a second signature to be created, which may not be used to find an general's first, private, signature, and proves their signature was given.
+  
   <br>
 </body>
 </html>
