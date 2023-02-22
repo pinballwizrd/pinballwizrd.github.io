@@ -1,86 +1,394 @@
+<!DOCTYPE html>
 <html>
 <head>
+  <script>
+    let amountOreTrade = 0;
+    let amountFoodTrade = 0;
+    let amountFuelTrade = 0;
+    let partner = 0;
+    let player_food = 3;
+    let player_fuel = 3;
+    let player_ore = 1;
+    let player1_food = 3;
+    let player1_fuel = 3;
+    let player1_ore = 1;
+    let player2_food = 3;
+    let player2_fuel = 3;
+    let player2_ore = 1;
+    let player3_food = 3;
+    let player3_fuel = 3;
+    let player3_ore = 1;
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-  img {
-    width: 49.5%;
-    height: auto; /* You can adjust this value according to your preference */
-    object-fit: cover;
-  }
+
+    button {
+      min-width: 48px;
+      min-height: 48px;
+      padding: 16px;
+      margin: 16px;
+      color: yellow;
+      background-color: black;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: darkblue;
+    }
+
   </style>
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .dropdown-content button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 8px 16px;
+      border: none;
+      min-width: 48px;
+      min-height: 48px;
+      padding: 16px;
+      margin: 16px;
+      color: yellow;
+      background-color: black;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
+    .dropdown-content button:hover {
+      background-color: darkblue;
+    }
+  </style>
+
 </head>
+
 <body>
-<div class="container">
-  <div class="row">
-    <img src="1.png" alt="Image 1">
-    <img src="2.png" alt="Image 2">
+<button id="Marketplace" style="display:inline-block">Marketplace</button>
+<div class="dropdown">
+<button id="mktOre" class="inlineButtonMkt" onclick="toggleOreDropdown()" style="display:none;" ">Buy or Sell Ore</button>
+  <div class="dropdown-content" id="ore-dropdown-content">
+  <button onclick="increaseOreOffer()" id="mktOre" class="inlineButtonMktOre">Increase amount</button>
+  <button onclick="decreaseOreOffer()" id="mktOre" class="inlineButtonMktOre">Decrease amount</button>
   </div>
-  <div class="row">
-    <img src="3.png" alt="Image 3">
-    <img src="4.png" alt="Image 4">
-  </div>
-  <div class="row">
-    <img src="5.png" alt="Image 5">
-    <img src="6.png" alt="Image 6">
-  </div>
-  <div class="row">
-    <img src="7.png" alt="Image 7">
-    <img src="8.png" alt="Image 8">
-  </div>
-  <div class="row">
-    <img src="9.png" alt="Image 9">
-    <img src="10.png" alt="Image 10">
-  <div class="row">
-    <img src="11.png" alt="Image 11">
-    <img src="12.png" alt="Image 12">
-  </div>
-  <div class="row">
-    <img src="13.png" alt="Image 13">
-    <img src="14.png" alt="Image 14">
-  </div>
-  <div class="row">
-    <img src="15.png" alt="Image 15">
-    <img src="16.png" alt="Image 16">
-  </div>
-  <div class="row">
-    <img src="17.png" alt="Image 17">
-    <img src="18.png" alt="Image 18">
-  </div>
-  <div class="row">
-    <img src="19.png" alt="Image 19">
-    <img src="20.png" alt="Image 20">
-  <div class="row">
-    <img src="21.png" alt="Image 11">
-    <img src="22.png" alt="Image 12">
-  </div>
-  <div class="row">
-    <img src="23.png" alt="Image 13">
-    <img src="24.png" alt="Image 14">
-  </div>
-  <div class="row">
-    <img src="25.png" alt="Image 15">
-    <img src="26.png" alt="Image 16">
-  </div>
-  <div class="row">
-    <img src="27.png" alt="Image 17">
-    <img src="28.png" alt="Image 18">
-  </div>
-  <div class="row">
-    <img src="29.png" alt="Image 19">
-    <img src="30.png" alt="Image 20">
-  </div>
-  <div class="row">
-    <img src="31.png" alt="Image 17">
-    <img src="32.png" alt="Image 18">
-  </div>
-  <div class="row">
-    <img src="33.png" alt="Image 19">
-    <img src="34.png" alt="Image 20">
-
-
-
-
-  </div>
-  <!-- Repeat for the rest of the images -->
 </div>
-</body>
-</html>
+<div class="dropdown">
+<button id="mktFood" class="inlineButtonMkt" onclick="toggleFoodDropdown()" style="display:none;">Buy or Sell Food</button>
+  <div class="dropdown-content" id="food-dropdown-content">
+  <button onclick="increaseFoodOffer()" id="mktFood" class="inlineButtonMktFood" ">Increase amount</button>
+  <button onclick="decreaseFoodOffer()" id="mktFood" class="inlineButtonMktFood" ">Decrease amount</button>
+  </div>
+</div>
+<div class="dropdown">
+<button id="mktFuel" class="inlineButtonMkt" onclick="toggleFuelDropdown()" style="display:none;">Buy or Sell Fuel</button>
+  <div class="dropdown-content" id="fuel-dropdown-content">
+  <button onclick="increaseFuelOffer()" id="mktFuel" class="inlineButtonMktFuel">Increase amount</button>
+  <button onclick="decreaseFuelOffer()" id="mktFuel" class="inlineButtonMktFuel">Decrease amount</button>
+  </div>
+</div>
+
+<div class="dropdown">
+<button id="selectTradeReceipient" onclick="toggleTradersDropdown()" class="inlineButtonMkt" style="display:none;">Select Player To Offer Trade</button>
+  <div class="dropdown-content" id="traders-dropdown-content">
+  <button onclick="selectTrader1()" id="player1Trader" class="inlineButtonMkt">Player1</button>
+  <button onclick="selectTrader2()" id="player2Trader" class="inlineButtonMkt">Player2</button>
+  <button onclick="selectTrader3()" id="player3Trader" class="inlineButtonMkt">Player3</button>
+  </div>
+</div>
+<!-- Leave Market Buttons Line Be Now So that it will stay *ON ONE LINE* -->
+
+
+ <script>
+//  make player receipients buttons dropdown
+  function toggleTradersDropdown() {
+    var dropdownContent = document.getElementById("traders-dropdown-content");
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  }
+  </script>
+
+
+<!-- make increase/decrease amount buttons dropdown -->
+  <script>
+    function toggleOreDropdown() {
+      var dropdownContent = document.getElementById("ore-dropdown-content");
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    }
+    function toggleFoodDropdown() {
+      var dropdownContent = document.getElementById("food-dropdown-content");
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    }
+    function toggleFuelDropdown() {
+      var dropdownContent = document.getElementById("fuel-dropdown-content");
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    }
+  </script>
+
+<!--Make the button for create trade -->
+<button onclick="createTrade()" id="createTrade" class="inlineButtonMkt" style="display:none;">Post Trade Offer</button>
+
+<button id="createBadge" class="inlineButtonMkt" style="display:none;">Create a badge to trade</button>
+
+<!--Make the paragraph objects for current trade offer information-->
+<p id="currentOreOffer"></p>
+<p id="currentFoodOffer"></p>
+<p id="currentFuelOffer"></p>
+<p id="tradePartner"></p>
+
+  <script> // This should run when any of the amount buttons are clicked
+    function increaseOreOffer() {
+      if (player_ore > amountOreTrade) {
+        amountOreTrade = amountOreTrade + 1;
+      }
+      var amountOreVariable = "You'll trade " + amountOreTrade + " ore";
+      var amountOreParagraph = document.getElementById("currentOreOffer");
+      amountOreParagraph.textContent = amountOreVariable;
+    }
+    function decreaseOreOffer() {
+      amountOreTrade = amountOreTrade - 1;
+      var amountOreVariable = "You'll trade " + amountOreTrade + " ore";
+      var amountOreParagraph = document.getElementById("currentOreOffer");
+      amountOreParagraph.textContent = amountOreVariable;
+    }
+    function increaseFoodOffer() {
+      if (player_food > amountFoodTrade) {
+        amountFoodTrade = amountFoodTrade + 1;
+      }
+      var amountFoodVariable = "You'll trade " + amountFoodTrade + " Food";
+      var amountFoodParagraph = document.getElementById("currentFoodOffer");
+      amountFoodParagraph.textContent = amountFoodVariable;
+    }
+    function decreaseFoodOffer() {
+      amountFoodTrade = amountFoodTrade - 1;
+      var amountFoodVariable = "You'll trade " + amountFoodTrade + " Food";
+      var amountFoodParagraph = document.getElementById("currentFoodOffer");
+      amountFoodParagraph.textContent = amountFoodVariable;
+    }
+    function increaseFuelOffer() {
+      if (player_fuel > amountFuelTrade) {
+        amountFuelTrade = amountFuelTrade + 1;
+      }
+      var amountFuelVariable = "You'll trade " + amountFuelTrade + " Fuel";
+      var amountFuelParagraph = document.getElementById("currentFuelOffer");
+      amountFuelParagraph.textContent = amountFuelVariable;
+    }
+    function decreaseFuelOffer() {
+      amountFuelTrade = amountFuelTrade - 1;
+      var amountFuelVariable = "You'll trade " + amountFuelTrade + " Fuel";
+      var amountFuelParagraph = document.getElementById("currentFuelOffer");
+      amountFuelParagraph.textContent = amountFuelVariable;
+    }
+
+
+    function updateFoodOffer() {
+      var amountFoodVariable = "You'll trade " + amountFoodTrade + " ore";
+      var amountFoodParagraph = document.getElementById("currentFoodOffer");
+      amountFoodParagraph.textContent = amountFoodVariable;
+    }
+    function updateFuelOffer() {
+      var amountFuelVariable = "You'll trade " + amountFuelTrade + " ore";
+      var amountFuelParagraph = document.getElementById("currentFuelOffer");
+      amountFuelParagraph.textContent = amountFuelVariable;
+    };
+  </script>
+
+<!-- make it so you can choose a trader you click on to offer trade -->
+<script>
+  function selectTrader1() {
+    var partnerVariable = "You'll trade with player1";
+    partner = 1;
+    var partnerParagraph = document.getElementById("tradePartner");
+    partnerParagraph.textContent = partnerVariable;
+  }
+  function selectTrader2() {
+    var partnerVariable = "You'll trade with player2";
+    partner = 2;
+    var partnerParagraph = document.getElementById("tradePartner");
+    partnerParagraph.textContent = partnerVariable;
+  }
+  function selectTrader3() {
+    var partnerVariable = "You'll trade with player3";
+    partner = 3;
+    var partnerParagraph = document.getElementById("tradePartner");
+    partnerParagraph.textContent = partnerVariable;
+  }
+</script>
+
+<script> // Making Market Buy/Sell Buttons hidden/shown when "Marketplace" button clicked
+
+    var MktButtonsVisible = false;
+    document.getElementById("Marketplace").onclick = function() {
+      var buysellOre = document.getElementById("mktOre");
+      var buysellFood = document.getElementById("mktFood");
+      var buysellFuel = document.getElementById("mktFuel");
+      var createTrade = document.getElementById("createTrade");
+      var selectTradeReceipient = document.getElementById("selectTradeReceipient");
+
+      if (MktButtonsVisible) {
+        buysellOre.style.display = "none";
+        buysellFood.style.display = "none";
+        buysellFuel.style.display = "none";
+        createTrade.style.display = "none";
+        selectTradeReceipient.style.display = "none";
+        MktButtonsVisible = false;
+      } else {
+        var buttons = document.getElementsByClassName("inlineButtonMkt");
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].style.display = "inline-block";
+          MktButtonsVisible = true;
+      }
+      }
+    };
+</script>
+
+<!-- show resources to player ***                ***Make sure to update these when building/trade complete*** -->
+
+<p id="resources_ore"><p>
+<p id="resources_food"><p>
+<p id="resources_fuel"><p>
+
+<script>
+  // Telling player they have food, should be callable as a script...
+  var foodVariable = "You have " + player_food + " food";
+  var oreVariable = "You have " + player_ore + " ore";
+  var fuelVariable = "You have " + player_fuel + " fuel";
+  var foodParagraph = document.getElementById("resources_food");
+  var oreParagraph = document.getElementById("resources_ore");
+  var fuelParagraph = document.getElementById("resources_fuel");
+  foodParagraph.textContent = foodVariable;
+  oreParagraph.textContent = oreVariable;
+  fuelParagraph.textContent = fuelVariable;
+</script>
+
+
+<p id="tradeOfferResultParagraph"></p>
+<p id="resultParagraph"></p>
+
+<script>
+  function createTrade() {
+    if (partner === 0) {
+      const result = "You have no trading partner selected";
+      const tradeOfferResultParagraph = document.getElementById("tradeOfferResultParagraph");
+      tradeOfferResultParagraph.textContent = result;
+    } else {
+      const result = "You tried trading with partner " + partner;
+      const tradeOfferResultParagraph = document.getElementById("tradeOfferResultParagraph");
+      tradeOfferResultParagraph.textContent = result;
+    if ((partner === 1 || partner === 2 || partner === 3) && (amountFoodTrade + amountFuelTrade + amountOreTrade > 0)) {
+      const resultoftrade = "You traded with partner " + partner;
+      const resultParagraph = document.getElementById("resultParagraph");
+      player_food = player_food - amountFoodTrade;
+      player_fuel = player_fuel - amountFuelTrade;
+      player_ore = player_ore - amountOreTrade;
+      resultParagraph.textContent = resultoftrade;
+      var foodVariable = "You have " + player_food + " food";
+      var oreVariable = "You have " + player_ore + " ore";
+      var fuelVariable = "You have " + player_fuel + " fuel";
+      var foodParagraph = document.getElementById("resources_food");
+      var oreParagraph = document.getElementById("resources_ore");
+      var fuelParagraph = document.getElementById("resources_fuel");
+      foodParagraph.textContent = foodVariable;
+      oreParagraph.textContent = oreVariable;
+      fuelParagraph.textContent = fuelVariable;
+    }
+  }};
+
+
+
+
+            // Here we go
+
+        //    if (partner === 1) {
+        //      if (player1_ore > 0) {
+        //      hasOre = True;
+        //    }
+        //      if (player1_food > 0) {
+        //      hasFood = True;
+        //    }
+        //      if (player1_fuel > 0) {
+        //      hasFuel = True;
+        //    }
+        //    }
+        //    if (hasOre=True && hasFood=True && hasFuel=True) {
+
+      //const resultoftrade = "You traded with partner " + partner;
+      //const resultParagraph = document.getElementById("resultParagraph");
+      //resultParagraph.textContent = resultoftrade;
+
+
+      //This is going in s
+  //    }
+      //if (partner===1 & player1_food > 0) {
+      //  if (amountFoodTrade )
+      //  const resultoftrade = "You traded with partner " + partner;
+      //  const resultParagraph = document.getElementById("resultParagraph");
+      //  resultParagraph.textContent = resultoftrade;
+    //  }
+    //  if (partner===1 & player1_food > 2) {
+    //    const resultoftrade = "You did not with partner " + partner;
+    //    const resultParagraph = document.getElementById("resultParagraph");
+    //    resultParagraph.textContent = resultoftrade;
+    //  }
+
+
+
+</script>
+
+<button id="buildProdButton" style="display:inline-block">Build Production Facilities</button>
+  <button id="buildOre" class="inlineButtonProd" style="display:none;">Build Smith Ore Production</button>
+  <button id="buildFood" class="inlineButtonProd" style="display:none;">Build Food Production</button>
+  <button id="buildFuel" class="inlineButtonProd" style="display:none;">Build Fuel Production</button>
+
+<script>
+// Making Production Building Buttons hidden/shown when "Build Production Facilities" button clicked
+var ProdButtonsVisible = false;
+document.getElementById("buildProdButton").onclick = function() {
+  var hiddenButtonBuildOre = document.getElementById("buildOre");
+  var hiddenButtonBuildFood = document.getElementById("buildFood");
+  var hiddenButtonBuildFuel = document.getElementById("buildFuel");
+  // if the style of the prod buttons is none (hidden) "flip" the variable indicating so over
+  if (ProdButtonsVisible) {
+    hiddenButtonBuildOre.style.display = "none";
+    hiddenButtonBuildFood.style.display = "none";
+    hiddenButtonBuildFuel.style.display = "none";
+    ProdButtonsVisible = false;
+  } else {
+    var buttons = document.getElementsByClassName("inlineButtonProd");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].style.display = "inline-block";
+      ProdButtonsVisible = true;
+  }
+  }
+};
+
+// now make prod check for ore then add the prod and draw it for player to see
+</script>
+
+
+<!-- Important to me that players can upload what they want to trade as "badges" -->
