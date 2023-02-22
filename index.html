@@ -80,7 +80,7 @@
 <body>
 <button id="Marketplace" style="display:inline-block">Marketplace</button>
 <div class="dropdown">
-<button id="mktOre" class="inlineButtonMkt" onclick="toggleOreDropdown()" style="display:none;" ">Buy or Sell Ore</button>
+<button id="mktOre" class="inlineButtonMkt" onclick="toggleOreDropdown()" style="display:none; ">Buy or Sell Ore</button>
   <div class="dropdown-content" id="ore-dropdown-content">
   <button onclick="increaseOreOffer()" id="mktOre" class="inlineButtonMktOre">Increase amount</button>
   <button onclick="decreaseOreOffer()" id="mktOre" class="inlineButtonMktOre">Decrease amount</button>
@@ -156,7 +156,6 @@
 <!--Make the button for create trade -->
 <button onclick="createTrade()" id="createTrade" class="inlineButtonMkt" style="display:none;">Post Trade Offer</button>
 
-<button id="createBadge" class="inlineButtonMkt" style="display:none;">Create a badge to trade</button>
 
 <!--Make the paragraph objects for current trade offer information-->
 <p id="currentOreOffer"></p>
@@ -428,10 +427,24 @@ function playerBuildFuel() {
      oreParagraph.textContent = oreVariable;
      fuelParagraph.textContent = fuelVariable;
 }
-
-
 // first iteration. run out of fuel = game over. no lands yet either. should be just chill if out of fuel
+</script>
+<script>
+function checkFuel() {
+  if (player_fuel < 1 || player_food < 0.32 || player_ore < 0) {
+    var coverUp = document.createElement('div');
+    coverUp.style.position = 'absolute';
+    coverUp.style.top = '0';
+    coverUp.style.left = '0';
+    coverUp.style.width = '100%';
+    coverUp.style.height = '100%';
+    coverUp.style.backgroundColor = 'red';
+    document.body.appendChild(coverUp);
+  }
+}
 
+// Call the checkFuel function at regular intervals to check the fuel level
+setInterval(checkFuel, 900);
 </script>
 <!-- Important to me that players can upload what they want to trade as "badges" -->
 
