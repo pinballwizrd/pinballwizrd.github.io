@@ -1,6 +1,11 @@
+require('dotenv').config();
+
+// Your bot token will be available as process.env.DISCORD_BOT_TOKEN
+const token = process.env.DISCORD_BOT_TOKEN;
+
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = 'MTA3ODA0MjQ0NTM2NDg2MzAwNw.G7zmyd.pX7JDqS07KNO6Lu31YqAreTaTKtsv16i36d5Pw';
 
 client.login(token);
 
