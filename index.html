@@ -2,6 +2,9 @@
 <html>
 <head>
   <script>
+    let player_prod_ore = 0;
+    let player_prod_food = 0;
+    let player_prod_fuel = 0;
     let amountOreTrade = 0;
     let amountFoodTrade = 0;
     let amountFuelTrade = 0;
@@ -322,51 +325,12 @@
     }
   }};
 
-
-
-
-            // Here we go
-
-        //    if (partner === 1) {
-        //      if (player1_ore > 0) {
-        //      hasOre = True;
-        //    }
-        //      if (player1_food > 0) {
-        //      hasFood = True;
-        //    }
-        //      if (player1_fuel > 0) {
-        //      hasFuel = True;
-        //    }
-        //    }
-        //    if (hasOre=True && hasFood=True && hasFuel=True) {
-
-      //const resultoftrade = "You traded with partner " + partner;
-      //const resultParagraph = document.getElementById("resultParagraph");
-      //resultParagraph.textContent = resultoftrade;
-
-
-      //This is going in s
-  //    }
-      //if (partner===1 & player1_food > 0) {
-      //  if (amountFoodTrade )
-      //  const resultoftrade = "You traded with partner " + partner;
-      //  const resultParagraph = document.getElementById("resultParagraph");
-      //  resultParagraph.textContent = resultoftrade;
-    //  }
-    //  if (partner===1 & player1_food > 2) {
-    //    const resultoftrade = "You did not with partner " + partner;
-    //    const resultParagraph = document.getElementById("resultParagraph");
-    //    resultParagraph.textContent = resultoftrade;
-    //  }
-
-
-
 </script>
 
 <button id="buildProdButton" style="display:inline-block">Build Production Facilities</button>
-  <button id="buildOre" class="inlineButtonProd" style="display:none;">Build Smith Ore Production</button>
-  <button id="buildFood" class="inlineButtonProd" style="display:none;">Build Food Production</button>
-  <button id="buildFuel" class="inlineButtonProd" style="display:none;">Build Fuel Production</button>
+  <button onclick="playerBuildOre()" id="buildOre" class="inlineButtonProd" style="display:none;">Build Smith Ore Production</button>
+  <button onclick="playerBuildFood()" id="buildFood" class="inlineButtonProd" style="display:none;">Build Food Production</button>
+  <button onclick="playerBuildFuel()" id="buildFuel" class="inlineButtonProd" style="display:none;">Build Fuel Production</button>
 
 <script>
 // Making Production Building Buttons hidden/shown when "Build Production Facilities" button clicked
@@ -389,9 +353,83 @@ document.getElementById("buildProdButton").onclick = function() {
   }
   }
 };
-
-// now make prod check for ore then add the prod and draw it for player to see
 </script>
 
+<script>
+// now make prod check for ore then add the prod and draw it for player to see
 
+function playerBuildOre() {
+  if (player_ore > 0) {// && (player_lands > player_prod/3)
+    player_prod_ore = player_prod_ore + 1;
+    player_ore = player_ore - 1;
+    var oreProdVariable = "You have " + player_prod_ore + " ore production facilities.";
+    var oreProdParagraph = document.getElementById("ore productions");
+    oreProdParagraph.textContent = oreProdVariable;
+
+    var oreVariable = "You have " + player_ore + " ore";
+    var oreParagraph = document.getElementById("resources_ore");
+    oreParagraph.textContent = oreVariable;
+  }
+
+}
+</script>
+<script>
+function playerBuildFood() {
+  if (player_ore > 0) {// && (player_lands > player_prod/3)
+    player_prod_food = player_prod_food + 1;
+    player_ore = player_ore - 1;
+    var foodProdVariable = "You have " + player_prod_food + " food production facilities.";
+    var foodProdParagraph = document.getElementById("food productions");
+    foodProdParagraph.textContent = foodProdVariable;
+
+    var oreVariable = "You have " + player_ore + " ore";
+    var oreParagraph = document.getElementById("resources_ore");
+    oreParagraph.textContent = oreVariable;
+  }
+}
+</script>
+<script>
+function playerBuildFuel() {
+  if (player_ore > 0) {// && (player_lands > player_prod/3)
+    player_prod_fuel = player_prod_fuel + 1;
+    player_ore = player_ore - 1;
+    var fuelProdVariable = "You have " + player_prod_fuel + " fuel production facilities.";
+    var fuelProdParagraph = document.getElementById("fuel productions");
+    fuelProdParagraph.textContent = fuelProdVariable;
+
+    var oreVariable = "You have " + player_ore + " ore";
+    var oreParagraph = document.getElementById("resources_ore");
+    oreParagraph.textContent = oreVariable;
+  }
+
+}
+</script>
+
+<p id="ore productions"</p>
+<p id="food productions"</p>
+<p id="fuel productions"</p>
+
+<button onclick="advanceRound()" id="advanceRound" style="display:block;">Advance to the next round</button>
+
+<script>
+   function advanceRound() {
+     player_prod = player_prod_fuel + player_prod_food + player_prod_ore;
+     player_fuel = player_fuel - player_prod + player_prod_fuel*2;
+     player_food = player_food - player_prod/3 + player_prod_food*2;
+     player_ore = player_ore + player_prod_ore;
+     var foodVariable = "You have " + player_food + " food";
+     var oreVariable = "You have " + player_ore + " ore";
+     var fuelVariable = "You have " + player_fuel + " fuel";
+     var foodParagraph = document.getElementById("resources_food");
+     var oreParagraph = document.getElementById("resources_ore");
+     var fuelParagraph = document.getElementById("resources_fuel");
+     foodParagraph.textContent = foodVariable;
+     oreParagraph.textContent = oreVariable;
+     fuelParagraph.textContent = fuelVariable;
+}
+
+
+// first iteration. run out of fuel = game over. no lands yet either. should be just chill if out of fuel
+
+</script>
 <!-- Important to me that players can upload what they want to trade as "badges" -->
